@@ -11,14 +11,18 @@ services:
     extra_hosts:
       - "minio1:192.168.1.124"
       - "minio2:192.168.1.223"
+      # - "minio1:114.214.178.119"
+      # - "minio2:192.168.174.144"
     environment:
       MINIO_ROOT_USER: minio
-      # MINIO_ACCESS_KEY: minio
       MINIO_ROOT_PASSWORD: minio123
+      # MINIO_ACCESS_KEY: minio
       # MINIO_SECRET_KEY: minio123
     volumes:
       - /mnt/data1:/data1          # rename on different nodes
       - /mnt/data2:/data2          # rename on different nodes
+      # - /mnt/nas/data1:/data1          # rename on different nodes
+      # - /mnt/red/data2:/data2          # rename on different nodes
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
